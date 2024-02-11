@@ -4,16 +4,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SwitchMyLayout"
+        xmlns:vm="clr-namespace:SwitchMyLayout.ViewModels"
         mc:Ignorable="d"
         
-        Title="MainWindow" Height="180" Width="493" WindowStyle="None" ResizeMode="NoResize" MouseDown="Window_MouseDown" BorderBrush="Black" BorderThickness="1">
+        Title="SwitchMyLayout"
+        Height="180" Width="493"
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
+        BorderBrush="Black" BorderThickness="1">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
     <Grid>
-        <Button x:Name="FromEnglishButton" Content="&gt;" HorizontalAlignment="Left" Margin="225,49,0,0" VerticalAlignment="Top" Width="40" Click="FromEnglishButton_Click"/>
-        <Button x:Name="FromRussianButton" Content="&lt;" HorizontalAlignment="Left" Margin="225,74,0,0" VerticalAlignment="Top" Width="40" Click="FromRussianButton_Click"/>
-        <TextBox x:Name="EnText" HorizontalAlignment="Left" Margin="40,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" AcceptsReturn="True" Height="158"/>
-        <TextBox x:Name="RuText" HorizontalAlignment="Left" Margin="298,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="180" Height="158"/>
-        <Label Content="EN" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
-        <Label Content="RU" HorizontalAlignment="Left" Margin="268,6,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="225,148,0,0" VerticalAlignment="Top" Width="40" Click="CloseButton_Click"/>
+        <Button x:Name="ConvertButton"
+                Content="Convert"
+                Margin="195,64,194,0"
+                VerticalAlignment="Top"
+                Click="ConvertButton_Click"/>
+        <TextBox x:Name="OriginalText"
+                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                 Margin="10,0,0,0"
+                 TextWrapping="Wrap"
+                 Text=""
+                 Width="180" Height="158"
+                 AcceptsReturn="True"/>
+        <TextBox x:Name="ConvertedText" 
+                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                 Margin="302,0,0,0"
+                 TextWrapping="Wrap"
+                 Text=""
+                 Width="179" Height="158"/>
+        <Button x:Name="CloseButton"
+                Content="Close"
+                Margin="195,0,195,10"
+                VerticalAlignment="Bottom" 
+                Click="CloseButton_Click"/>
+        <ComboBox x:Name="ConverterTypeComboBox" 
+                  Margin="195,10,194,0"
+                  VerticalAlignment="Top" SelectedIndex="0"
+                  ItemsSource="{Binding ConverterTypes, Mode=OneWay}" DisplayMemberPath="VisualName" SelectedValue="{Binding SelectedConverterTypeName}" SelectedValuePath="LangName"/>
     </Grid>
 </Window>

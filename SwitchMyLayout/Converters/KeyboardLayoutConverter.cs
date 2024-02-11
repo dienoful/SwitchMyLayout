@@ -1,14 +1,13 @@
-﻿using System;
+﻿using SwitchMyLayout.Enums;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace SwitchMyLayout
+namespace SwitchMyLayout.Converters
 {
     public class KeyboardLayoutConverter
     {
-        private Dictionary<char, char> enToRUuDIctionary = new Dictionary<char, char>
+        #region Dictionaries
+        private readonly Dictionary<char, char> enToRUuDIctionary = new Dictionary<char, char>
         {
             { 'q', 'й' },{ 'Q', 'Й' },
             { 'w', 'ц' },{ 'W', 'Ц' },
@@ -61,8 +60,7 @@ namespace SwitchMyLayout
             { '_', '_' },
             { '+', '+' },
         };
-
-        private Dictionary<char, char> ruToEnuDIctionary = new Dictionary<char, char>
+        private readonly Dictionary<char, char> ruToEnuDIctionary = new Dictionary<char, char>
         {
             { 'й', 'q' },{ 'Й', 'Q' },
             { 'ц', 'w' },{ 'Ц', 'W' },
@@ -115,22 +113,23 @@ namespace SwitchMyLayout
             { '_', '_' },
             { '+', '+' },
         };
+        #endregion
 
-        private char ConvertLetter(char inputLetter, string locale)
+        private char ConvertLetter(char inputLetter, LangName locale)
         {
             switch (locale)
             {
-                case "en":
+                case LangName.EN:
                     enToRUuDIctionary.TryGetValue(inputLetter, out char newRuLetter);
                     return newRuLetter == default(char) ? inputLetter : newRuLetter;
-                case "ru":
+                case LangName.RU:
                 default:
                     ruToEnuDIctionary.TryGetValue(inputLetter, out char newEnLetter);
                     return newEnLetter == default(char) ? inputLetter : newEnLetter;
             }
         }
 
-        public string ConvertString(string inputString, string locale)
+        public string ConvertString(string inputString, LangName locale)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < inputString.Length; i++)

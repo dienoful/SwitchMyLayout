@@ -8,9 +8,9 @@ using System.Windows;
 // набор атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("SwitchMyLayout")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("App for converting keyboard layout text")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Not a company")]
 [assembly: AssemblyProduct("SwitchMyLayout")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]

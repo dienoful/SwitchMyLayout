@@ -1,48 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SwitchMyLayout.Converters;
+using SwitchMyLayout.Models;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SwitchMyLayout
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// MainWindow logic
     /// </summary>
     public partial class MainWindow : Window
     {
-        KeyboardLayoutConverter converter = new KeyboardLayoutConverter();
+        private readonly KeyboardLayoutConverter keyboardLayoutConverter = new KeyboardLayoutConverter();
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void FromEnglishButton_Click(object sender, RoutedEventArgs e)
+        private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
-            var originalText = EnText.Text;
-            if (!string.IsNullOrEmpty(originalText))
+            ConverterType selectedConverterType = ConverterTypeComboBox.SelectedItem as ConverterType;
+            var originalText = OriginalText.Text;
+            if (!string.IsNullOrEmpty(originalText) && selectedConverterType != null)
             {
-                var newText = converter.ConvertString(originalText, "en");
-                RuText.Text = newText;
-            }
-        }
-
-        private void FromRussianButton_Click(object sender, RoutedEventArgs e)
-        {
-            var originalText = RuText.Text;
-            if (!string.IsNullOrEmpty(originalText))
-            {
-                var newText = converter.ConvertString(originalText, "ru");
-                EnText.Text = newText;
+                var newText = keyboardLayoutConverter.ConvertString(originalText, selectedConverterType.LangName);
+                ConvertedText.Text = newText;
             }
         }
 
