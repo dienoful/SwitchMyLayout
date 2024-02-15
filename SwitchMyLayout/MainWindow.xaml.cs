@@ -18,7 +18,7 @@ namespace SwitchMyLayout
 
         private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
-            ConverterType selectedConverterType = ConverterTypeComboBox.SelectedItem as ConverterType;
+            ConverterType? selectedConverterType = ConverterTypeComboBox.SelectedItem as ConverterType;
             var originalText = OriginalText.Text;
             if (!string.IsNullOrEmpty(originalText) && selectedConverterType != null)
             {
